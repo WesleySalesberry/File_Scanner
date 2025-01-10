@@ -12,7 +12,6 @@ This project automates the process of scanning directories for specific file typ
 - [Usage](#usage)
 - [Modules](#modules)
 - [Logging](#logging)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---
@@ -65,7 +64,7 @@ This project consists of Python scripts that work together to:
 
 ## Usage
 
-1. Open the main.py file and replace the placeholder access_token with your Dropbox API access token:
+1. Open the `main.py` file and replace the placeholder access_token with your Dropbox API access token:
 ```bash
 dropbox_uploader = DropboxUploader(access_token="your-access-token")
 ```
@@ -76,3 +75,61 @@ python main.py
 ```
 
 3. Monitor the console logs for updates and any potential issues.
+
+
+## Modules
+
+### `main.py`
+- Orchestrates the overall workflow:
+  <ul>
+    <li>Scans directories for files matching specific extensions.</li>
+    <li>Compresses the files into a zip archive.</li>
+    <li>Cleans up the original files.</li>
+    <li>Uploads the zip file to Dropbox.</li>
+  </ul>
+
+### `file_scanner.py`
+- Scans directories for files matching specified extensions.
+  <ul>
+    <li>Uses multi-threading for faster directory traversal.</li>
+    <li>Filters files based on a list of extensions.</li>
+  </ul>
+
+### `file_compressor.py`
+- Compresses files into a zip archive.
+  <ul>
+    <li>Applies maximum compression using the `zipfile` module.</li>
+    <li>Ensures unique file names in the archive to avoid overwriting.</li>
+  </ul>
+
+### `file_cleaner.py`
+- Deletes files from the filesystem after compression.
+  <ul>
+    <li>Handles errors, such as permission issues, gracefully.</li>
+    <li>Logs the status of each deletion.</li>
+  </ul>
+
+### `dropbox_uploader.py`
+- Uploads the compressed zip file to Dropbox.
+  <ul>
+    <li>Uses the Dropbox Python SDK.</li>
+    <li>Requires a valid Dropbox API access token.</li>
+    <li>Uploads files to a specified Dropbox folder.</li>
+  </ul>
+
+
+## Logging
+
+- Logs are configured in the main.py file and provide detailed information about the process:
+
+<ul>
+    <li>INFO: General progress updates.</li>
+    <li>WARNING: Non-critical issues (e.g., file overwrite warnings).</li>
+    <li>ERROR: Critical issues (e.g., permission errors, failed uploads).</li>
+</ul>
+
+- You can customize logging settings in the `logging.basicConfig` configuration in `main.py`
+
+
+## License
+- This project is licensed under the MIT License.
