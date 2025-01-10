@@ -74,7 +74,7 @@ def main():
 
         logging.info("*** Uploading Zip File to Dropbox ***")
 
-        dropbox_uploader = DropboxUploader(access_token="sl.CESEStBj7XTfmdU6Xjq1BMIjyPK5cXwvFztK9Z1T4RX7C-Lb0K8nf_c6slHP_H3P8x5AIQeVZA3hQr1Nxg8VEUPou91sEqE8j6jBKEhy1qjog0_mnukRdFKZFuVt5lhpP3QCtiY6tUr9")
+        dropbox_uploader = DropboxUploader(access_token="")
         dropbox_uploader.upload_file(str(zip_path), dropbox_folder="/ZippedFiles")
 
     logging.info("*** Operation Complete ***")
